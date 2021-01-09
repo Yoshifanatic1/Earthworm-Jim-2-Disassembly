@@ -1,0 +1,16 @@
+- The .rnc files are compressed. I named them that since the first 3 bytes for all of them was "RNC" in ascii
+
+- This game uses IRQs to stream samples to the SPC700 and HDMA channel 0 to buffer the sample data to RAM. This is how this game is able to both have so many different good quality sound effects and good quality music.
+
+- Streamed samples can specify their pitch before being uploaded. For example, both the pig oink and the sound of Jim eating Bob the Killer Goldfish use the same sample, but with different pitch values.
+
+- Most of the audio engine is split up into packets of 256 bytes. Since this would be annoying to work with, I made a macro that will automatically split the file in this manner when it's inserted.
+Why this was done in the first place, I don't know. My guess was that it was an attempt to make it harder for people like me to reverse engineer it.
+
+- In between gun ID 04 (homing missle) and 06 (Barn Blaster) is an unused gun ID, which the game will explictly skip over when switching weapons. If you modify the RAM to select it, it will have a blank icon and act exactly the same as the homing missle (aside from the fact that it draws from its own ammo count).
+It seems like the devs may have planned on adding another gun to the game.
+
+- This game has what appears to be lots of garbage bytes in between a lot of the files. They don't seem like they're part of the files above them, but I'm not 100% sure.
+
+- This disassembly was done not just because of me wanting to learn more about this quirky game I've had since I was a kid, but also as a gift to my online buddy Andy who is a big EWJ fan.
+If you're reading this Andy, I hope you like this! Even if you don't know ASM, you should still be able to mess around with some stuff, like the text.
